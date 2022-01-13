@@ -1,24 +1,18 @@
 import { Request, Response } from "express";
-const homeDetail = (req: Request, resp: Response) => {
-    // let obj = {
-    //     x: 12,
-    //     y: 30
-    // }
+import UserModel from "../models/user";
+import { createUser, findAndUpdate } from "../services/users.service";
 
-    //let data = sumData(obj);
+const homeDetail = async (req: Request, resp: Response) => {
+    //1.let myData = await UserModel.find();
+    //2.Add Data=Cread
+    //const user = await createUser({ name: "Jame Kameron", dept: "it", mobile: 958462541 });
+    //3.Update
+    const user = await findAndUpdate({ name: "Jame Kameron" }, { dept: "SE" }, { mobile: 95784521 }, { new: true });
+
     resp.json({
         message: "Home Page new",
-        //data: data
+        student: user
     })
 };
-
-// interface params {
-//     x: number,
-//     y: number
-// }
-
-// const sumData = (obj: params) => {
-//     return obj.x + obj.y;
-// }
 
 export { homeDetail };
